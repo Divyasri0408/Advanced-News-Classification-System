@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NewsAI Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Classify Any News Article</h1>
+        <p>AI-powered NLP classification system</p>
+    </div>
+
+    <!-- CATEGORY BUTTONS -->
+    <div class="tags">
+        <button onclick="loadExamples('business', this)">Business</button>
+        <button onclick="loadExamples('sport', this)">Sport</button>
+        <button onclick="loadExamples('politics', this)">Politics</button>
+        <button onclick="loadExamples('tech', this)">Tech</button>
+        <button onclick="loadExamples('entertainment', this)">Entertainment</button>
+        <button onclick="loadExamples('education', this)">Education</button>
+        <button onclick="loadExamples('health', this)">Health</button>
+        <button onclick="loadExamples('science', this)">Science</button>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+        <!-- LEFT -->
+        <div class="card">
+            <h3>📰 News Article</h3>
+
+            <form method="POST">
+                <textarea id="textBox" name="text" placeholder="Paste your news here..." required>{{ text or "" }}</textarea>
+                <button type="submit">🚀 Classify</button>
+            </form>
+        </div>
+
+        <!-- RIGHT -->
+        <!-- RIGHT -->
+<div class="card">
+    <h3>📊 Result</h3>
+
+    {% if prediction %}
+
+        <!-- RESULT -->
+        <h2 class="result">{{ prediction }}</h2>
+        <p>Confidence: {{ confidence }}%</p>
+
+        <!-- PROGRESS BAR -->
+        <div class="bar">
+            <div class="fill" style="width: {{ confidence }}%;"></div>
+        </div>
+
+        <!-- 🔥 PREDICT AGAIN BUTTON -->
+        <div style="margin-top: 20px;">
+            <button class="secondary-btn" onclick="resetForm()">🔄 Predict Again</button>
+        </div>
+
+    {% else %}
+
+        <p style="opacity:0.6;">✨ Your result will appear here</p>
+
+    {% endif %}
+</div>
+
+<!-- JS -->
+<script>
+function loadExamples(category, btn) {
+
+    // highlight active
+    document.querySelectorAll(".tags button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    fetch(`/examples/${category}`)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("textBox").value = data.join("\n\n");
+        })
+        .catch(err => console.error(err));
+}
+</script>
+<script>
+function resetForm() {
+    document.getElementById("textBox").value = "";
+
+    // remove active category
+    document.querySelectorAll(".tags button").forEach(btn => {
+        btn.classList.remove("active");
+    });
+}
+</script>
+</body>
+</html>

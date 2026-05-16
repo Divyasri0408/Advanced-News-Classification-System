@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - NewsAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="center-box">
+
+    <div class="card">
+        <h1>Welcome to NewsAI 🚀</h1>
+        <p class="subtitle">
+            Classify news articles using AI-powered NLP
+        </p>
+
+        <!-- ONLY LOGIN + REGISTER -->
+        <a href="/login">
+            <button>Login</button>
+        </a>
+
+        <a href="/register">
+            <button>Register</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

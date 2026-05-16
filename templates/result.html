@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Result - NewsAI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="wrapper">
+
+    <!-- TITLE -->
+    <div class="title">
+        <h1>Prediction Result 📊</h1>
+        <p>AI-powered analysis output</p>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid">
+
+        <!-- LEFT: INPUT -->
+        <div class="card">
+            <h3>Input Text</h3>
+            <p class="text-box">
+                {{ text or "No input provided" }}
+            </p>
+        </div>
+
+        <!-- RIGHT: RESULT -->
+        <div class="card">
+            <h3>Result</h3>
+
+            <h2 class="prediction">
+                {{ prediction or "N/A" }}
+            </h2>
+
+            <p>Confidence: {{ confidence|default(0)|int }}%</p>
+
+            <!-- PROGRESS BAR -->
+            <div class="bar">
+                <div class="fill" style="width: {{ confidence|default(0)|int }}%;"></div>
+            </div>
+
+            <!-- BUTTON -->
+            <a href="/predict">
+                <button class="btn">Try Again 🔄</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

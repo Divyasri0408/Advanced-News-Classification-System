@@ -1,0 +1,20 @@
+<nav class="navbar">
+    <div class="logo">NewsAI</div>
+
+    <div class="nav-links">
+
+        <!-- ALWAYS VISIBLE -->
+        <a href="{{ url_for('home') }}">Home</a>
+
+        {% if session.get('user') %}
+            <!-- ✅ AFTER LOGIN -->
+            <a href="{{ url_for('predict') }}">Predict</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <!-- ✅ BEFORE LOGIN -->
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+
+    </div>
+</nav>
