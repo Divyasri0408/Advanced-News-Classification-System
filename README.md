@@ -5,3 +5,19 @@ News article classification is classifying news articles into various sections l
 Keywords: Text Classification, Machine Learning, TF-IDF Vectorizer, Doc2Vec
 
 ![image](https://user-images.githubusercontent.com/72100782/167931065-3bdea37a-87b1-4a0e-a7a2-8d839be5b510.png)
+
+
+
+## Screenshots
+
+### Home Page
+![Home](screenshots/home.png)
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Prediction Page
+![Prediction](screenshots/predict.png)
+
+### Result Page
+![Result](screenshots/result.png)
